@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "dev.amal.onboarding_presentation"
+    namespace = "dev.amal.core_ui"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -16,8 +16,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = true
-
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -45,10 +44,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
-    implementation(project(":core-ui"))
-    implementation(project(":onboarding:onboarding_domain"))
-
     implementation(libs.core.ktx)
 
     // Compose

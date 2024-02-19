@@ -53,6 +53,7 @@ android {
 
 dependencies {
     implementation(project(":core"))
+    implementation(project(":core-ui"))
     implementation(project(":onboarding:onboarding_presentation"))
     implementation(project(":onboarding:onboarding_domain"))
     implementation(project(":tracker:tracker_data"))
@@ -66,6 +67,7 @@ dependencies {
     // Compose
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)
+    implementation(libs.compose.navigation)
 
     // Hilt
     implementation(libs.hilt)
