@@ -44,7 +44,6 @@ fun SetupNavHost(navController: NavHostController) {
         composable(Route.GOAL) {
 
         }
-
         composable(Route.TRACKER_OVERVIEW) {
 
         }
