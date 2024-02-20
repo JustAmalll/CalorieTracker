@@ -1,4 +1,4 @@
-package dev.amal.core_ui
+package dev.amal.onboarding_data
 
 import org.junit.Test
 

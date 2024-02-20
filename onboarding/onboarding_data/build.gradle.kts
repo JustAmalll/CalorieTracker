@@ -1,3 +1,4 @@
+@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
@@ -6,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "dev.amal.onboarding_presentation"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    namespace = "dev.amal.onboarding_data"
+    compileSdk = 34
 
     defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
+        minSdk = 24
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -18,8 +19,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = true
-
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -31,34 +31,18 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = libs.versions.jvmTarget.get()
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
+        jvmTarget = "1.8"
     }
 }
 
 dependencies {
     implementation(project(":core"))
-    implementation(project(":core-ui"))
     implementation(project(":onboarding:onboarding_domain"))
 
     implementation(libs.core.ktx)
-
-    // Compose
-    implementation(platform(libs.compose.bom))
-    implementation(libs.bundles.compose)
+    implementation(libs.coroutines)
 
     // Hilt
     implementation(libs.hilt)
-    implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
 }

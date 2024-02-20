@@ -44,6 +44,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
+
     implementation(libs.core.ktx)
 
     // Compose
