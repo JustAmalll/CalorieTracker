@@ -39,7 +39,7 @@ fun HeightAndWeightAssembly(
 
     ObserveAsEvents(flow = viewModel.actions) { action ->
         when (action) {
-            NavigateToTheNextScreen -> navController.navigate(Route.ACTIVITY)
+            NavigateToTheNextScreen -> navController.navigate(Route.ACTIVITY_AND_GOAL)
             is ShowSnackbar -> showSnackBar(action.message)
         }
     }
