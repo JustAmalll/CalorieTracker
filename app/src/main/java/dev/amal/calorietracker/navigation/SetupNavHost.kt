@@ -10,6 +10,7 @@ import dev.amal.core.navigation.Route
 import dev.amal.core.util.UiText
 import dev.amal.onboarding_presentation.age.AgeScreenAssembly
 import dev.amal.onboarding_presentation.gender.GenderScreenAssembly
+import dev.amal.onboarding_presentation.height_and_weight.HeightAndWeightAssembly
 import dev.amal.onboarding_presentation.welcome.WelcomeScreenAssembly
 
 @Composable
@@ -34,11 +35,8 @@ fun SetupNavHost(
         composable(Route.AGE) {
             AgeScreenAssembly(navController = navController, showSnackBar = showSnackBar)
         }
-        composable(Route.HEIGHT) {
-
-        }
-        composable(Route.WEIGHT) {
-
+        composable(Route.HEIGHT_AND_WEIGHT) {
+            HeightAndWeightAssembly(navController = navController, showSnackBar = showSnackBar)
         }
         composable(Route.NUTRIENT_GOAL) {
 

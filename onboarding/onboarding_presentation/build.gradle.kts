@@ -56,6 +56,7 @@ dependencies {
     // Compose
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)
+    debugImplementation(libs.compose.ui.tooling)
 
     // Hilt
     implementation(libs.hilt)

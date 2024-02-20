@@ -40,6 +40,7 @@ compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
 compose-ui = { module = "androidx.compose.ui:ui" }
 compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-ui-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 compose-material3 = { module = "androidx.compose.material3:material3" }
 compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "compose-navigation" }

@@ -27,8 +27,8 @@ import dev.amal.core.navigation.Route
 import dev.amal.core_ui.theme.LocalSpacing
 import dev.amal.core_ui.utils.ObserveAsEvents
 import dev.amal.onboarding_presentation.components.ActionButton
-import dev.amal.onboarding_presentation.gender.GenderScreenEvent.OnGenderClick
-import dev.amal.onboarding_presentation.gender.GenderScreenEvent.OnNextClicked
+import dev.amal.onboarding_presentation.gender.GenderEvent.OnGenderClick
+import dev.amal.onboarding_presentation.gender.GenderEvent.OnNextClicked
 import dev.amal.onboarding_presentation.gender.GenderViewModel.GenderAction.NavigateToTheNextScreen
 
 @Composable
@@ -54,7 +54,7 @@ fun GenderScreenAssembly(
 @Composable
 private fun GenderScreen(
     selectedGender: Gender,
-    onEvent: (GenderScreenEvent) -> Unit
+    onEvent: (GenderEvent) -> Unit
 ) {
     val spacing = LocalSpacing.current
 

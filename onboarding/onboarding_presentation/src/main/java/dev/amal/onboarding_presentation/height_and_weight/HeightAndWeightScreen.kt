@@ -1,4 +1,4 @@
-package dev.amal.onboarding_presentation.age
+package dev.amal.onboarding_presentation.height_and_weight
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,32 +24,32 @@ import dev.amal.core.navigation.Route
 import dev.amal.core.util.UiText
 import dev.amal.core_ui.theme.LocalSpacing
 import dev.amal.core_ui.utils.ObserveAsEvents
-import dev.amal.onboarding_presentation.age.AgeViewModel.AgeAction.NavigateToTheNextScreen
-import dev.amal.onboarding_presentation.age.AgeViewModel.AgeAction.ShowSnackbar
 import dev.amal.onboarding_presentation.components.ActionButton
 import dev.amal.onboarding_presentation.components.UnitTextField
+import dev.amal.onboarding_presentation.height_and_weight.HeightAndWeightViewModel.HeightAndWeightAction.NavigateToTheNextScreen
+import dev.amal.onboarding_presentation.height_and_weight.HeightAndWeightViewModel.HeightAndWeightAction.ShowSnackbar
 
 @Composable
-fun AgeScreenAssembly(
+fun HeightAndWeightAssembly(
     navController: NavHostController,
-    viewModel: AgeViewModel = hiltViewModel(),
+    viewModel: HeightAndWeightViewModel = hiltViewModel(),
     showSnackBar: suspend (UiText) -> Unit
 ) {
-    val age by viewModel.state.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     ObserveAsEvents(flow = viewModel.actions) { action ->
         when (action) {
-            NavigateToTheNextScreen -> navController.navigate(Route.HEIGHT_AND_WEIGHT)
+            NavigateToTheNextScreen -> navController.navigate(Route.ACTIVITY)
             is ShowSnackbar -> showSnackBar(action.message)
         }
     }
-    AgeScreen(age = age, onEvent = viewModel::onEvent)
+    HeightAndWeightScreen(state = state, onEvent = viewModel::onEvent)
 }
 
 @Composable
-private fun AgeScreen(
-    age: String,
-    onEvent: (AgeEvent) -> Unit
+private fun HeightAndWeightScreen(
+    state: HeightAndWeightState,
+    onEvent: (HeightAndWeightEvent) -> Unit
 ) {
     val spacing = LocalSpacing.current
 
@@ -64,20 +64,33 @@ private fun AgeScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = stringResource(id = R.string.whats_your_age),
+                text = stringResource(id = R.string.whats_your_height),
                 style = MaterialTheme.typography.displaySmall
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
 
             UnitTextField(
-                value = age,
-                onValueChange = { onEvent(AgeEvent.OnAgeChanged(it)) },
-                unit = stringResource(id = R.string.years)
+                value = state.height,
+                onValueChange = { onEvent(HeightAndWeightEvent.OnHeightChanged(it)) },
+                unit = stringResource(id = R.string.cm)
+            )
+            Spacer(modifier = Modifier.height(spacing.spaceLarge))
+
+            Text(
+                text = stringResource(id = R.string.whats_your_weight),
+                style = MaterialTheme.typography.displaySmall
+            )
+            Spacer(modifier = Modifier.height(spacing.spaceMedium))
+
+            UnitTextField(
+                value = state.weight,
+                onValueChange = { onEvent(HeightAndWeightEvent.OnWeightChanged(it)) },
+                unit = stringResource(id = R.string.kg)
             )
         }
         ActionButton(
             text = stringResource(id = R.string.next),
-            onClick = { onEvent(AgeEvent.OnNextClicked) },
+            onClick = { onEvent(HeightAndWeightEvent.OnNextClicked) },
             modifier = Modifier.align(Alignment.BottomEnd)
         )
     }
@@ -85,8 +98,11 @@ private fun AgeScreen(
 
 @Preview
 @Composable
-fun AgeScreenPreview() {
+fun HeightAndWeightScreenPreview() {
     CalorieTrackerTheme {
-        AgeScreen(age = "25", onEvent = {})
+        HeightAndWeightScreen(
+            state = HeightAndWeightState(),
+            onEvent = {}
+        )
     }
 }
