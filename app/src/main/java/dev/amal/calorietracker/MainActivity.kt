@@ -1,37 +1,41 @@
 package dev.amal.calorietracker
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SingleChoiceSegmentedButtonRow
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.runtime.remember
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.amal.calorietracker.navigation.SetupNavHost
 import dev.amal.calorietracker.ui.theme.CalorieTrackerTheme
-import dev.amal.core.navigation.Route
-import dev.amal.onboarding_presentation.welcome.WelcomeScreen
 
 @AndroidEntryPoint
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
         setContent {
             CalorieTrackerTheme {
-                SetupNavHost(navController = rememberNavController())
+                val snackBarHostState = remember { SnackbarHostState() }
+
+                Scaffold(
+                    snackbarHost = { SnackbarHost(hostState = snackBarHostState) }
+                ) {
+                    SetupNavHost(
+                        navController = rememberNavController(),
+                        showSnackBar = {
+                            snackBarHostState.showSnackbar(it.asString(context = this))
+                        }
+                    )
+                }
             }
         }
     }

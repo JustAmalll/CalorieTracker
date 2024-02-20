@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import dev.amal.calorietracker.ui.theme.CalorieTrackerTheme
 import dev.amal.core.R
@@ -24,7 +23,7 @@ import dev.amal.onboarding_presentation.components.ActionButton
 
 @Composable
 fun WelcomeScreenAssembly(navController: NavHostController) {
-    WelcomeScreen(onNextClicked = { navController.navigate(Route.AGE) } )
+    WelcomeScreen(onNextClicked = { navController.navigate(Route.GENDER) } )
 }
 
 @Composable

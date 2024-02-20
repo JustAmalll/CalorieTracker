@@ -1,4 +1,4 @@
-package dev.amal.onboarding_data.gender.di
+package dev.amal.onboarding_data.di
 
 import android.content.SharedPreferences
 import dagger.Module

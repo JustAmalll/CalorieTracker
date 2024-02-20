@@ -7,12 +7,16 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import dev.amal.core.navigation.Route
+import dev.amal.core.util.UiText
+import dev.amal.onboarding_presentation.age.AgeScreenAssembly
 import dev.amal.onboarding_presentation.gender.GenderScreenAssembly
-import dev.amal.onboarding_presentation.welcome.WelcomeScreen
 import dev.amal.onboarding_presentation.welcome.WelcomeScreenAssembly
 
 @Composable
-fun SetupNavHost(navController: NavHostController) {
+fun SetupNavHost(
+    navController: NavHostController,
+    showSnackBar: suspend (UiText) -> Unit
+) {
     NavHost(
         navController = navController,
         startDestination = Route.WELCOME,
@@ -24,11 +28,11 @@ fun SetupNavHost(navController: NavHostController) {
         composable(Route.WELCOME) {
             WelcomeScreenAssembly(navController = navController)
         }
-        composable(Route.AGE) {
+        composable(Route.GENDER) {
             GenderScreenAssembly(navController = navController)
         }
-        composable(Route.GENDER) {
-
+        composable(Route.AGE) {
+            AgeScreenAssembly(navController = navController, showSnackBar = showSnackBar)
         }
         composable(Route.HEIGHT) {
 
