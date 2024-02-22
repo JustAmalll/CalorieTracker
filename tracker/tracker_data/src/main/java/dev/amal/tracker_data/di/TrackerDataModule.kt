@@ -1,10 +1,13 @@
 package dev.amal.tracker_data.di
 
+import android.app.Application
+import androidx.room.Room
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dev.amal.tracker_data.source.cache.TrackerDatabase
 import dev.amal.tracker_data.source.remote.OpenFoodApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -37,4 +40,8 @@ object TrackerDataModule {
         .build()
         .create()
 
+    @Provides
+    @Singleton
+    fun provideTrackerDatabase(app: Application): TrackerDatabase =
+        Room.databaseBuilder(app, TrackerDatabase::class.java, "tracker_db").build()
 }

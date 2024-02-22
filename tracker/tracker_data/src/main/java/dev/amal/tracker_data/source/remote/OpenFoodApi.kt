@@ -1,6 +1,6 @@
 package dev.amal.tracker_data.source.remote
 
-import dev.amal.tracker_data.model.SearchDto
+import dev.amal.tracker_data.source.remote.dto.SearchDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 

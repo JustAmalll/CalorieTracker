@@ -1,4 +1,4 @@
-package dev.amal.tracker_data.model
+package dev.amal.tracker_data.source.remote.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

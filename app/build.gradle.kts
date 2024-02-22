@@ -74,10 +74,6 @@ dependencies {
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
 
-    // Room
-    implementation(libs.room)
-    ksp(libs.room.compiler)
-
     // Coil
     implementation(libs.coil.compose)
 }

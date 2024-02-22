@@ -59,4 +59,8 @@ dependencies {
     implementation(platform(libs.okhttp.bom))
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging.interceptor)
+
+    // Room
+    implementation(libs.room)
+    ksp(libs.room.compiler)
 }
