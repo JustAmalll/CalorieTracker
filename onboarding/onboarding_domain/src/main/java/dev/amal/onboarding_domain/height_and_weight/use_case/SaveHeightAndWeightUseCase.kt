@@ -1,11 +1,11 @@
-package dev.amal.onboarding_domain.height_and_weight.interactor
+package dev.amal.onboarding_domain.height_and_weight.use_case
 
 import dev.amal.onboarding_domain.height_and_weight.repository.HeightAndWeightRepository
 
-class HeightAndWeightInteractor(
+class SaveHeightAndWeightUseCase(
     private val heightAndWeightRepository: HeightAndWeightRepository
 ) {
 
-    suspend fun saveHeightAndWeight(height: Int, weight: Float): Result<Unit> =
+    suspend operator fun invoke(height: Int, weight: Float): Result<Unit> =
         heightAndWeightRepository.saveHeightAndWeight(height = height, weight = weight)
 }

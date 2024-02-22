@@ -5,7 +5,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.amal.core.R
 import dev.amal.core.util.BaseViewModel
 import dev.amal.core.util.UiText
-import dev.amal.onboarding_domain.height_and_weight.interactor.HeightAndWeightInteractor
+import dev.amal.onboarding_domain.height_and_weight.use_case.SaveHeightAndWeightUseCase
 import dev.amal.onboarding_presentation.height_and_weight.HeightAndWeightEvent.OnHeightChanged
 import dev.amal.onboarding_presentation.height_and_weight.HeightAndWeightEvent.OnNextClicked
 import dev.amal.onboarding_presentation.height_and_weight.HeightAndWeightEvent.OnWeightChanged
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HeightAndWeightViewModel @Inject constructor(
-    private val genderInteractor: HeightAndWeightInteractor
+    private val saveHeightAndWeight: SaveHeightAndWeightUseCase
 ) : BaseViewModel<HeightAndWeightState, HeightAndWeightAction, HeightAndWeightEvent>() {
 
     override fun defaultState() = HeightAndWeightState()
@@ -45,7 +45,7 @@ class HeightAndWeightViewModel @Inject constructor(
                 return@launch
             }
 
-            genderInteractor.saveHeightAndWeight(height = height, weight = weight).onSuccess {
+            saveHeightAndWeight(height = height, weight = weight).onSuccess {
                 actionChannel.send(HeightAndWeightAction.NavigateToTheNextScreen)
             }
         }

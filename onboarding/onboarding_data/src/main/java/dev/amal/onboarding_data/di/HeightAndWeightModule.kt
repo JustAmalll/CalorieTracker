@@ -8,12 +8,11 @@ import dagger.hilt.components.SingletonComponent
 import dev.amal.onboarding_data.height_and_weight.repository.HeightAndWeightRepositoryImpl
 import dev.amal.onboarding_data.height_and_weight.source.cache.HeightAndWeightCacheDataSource
 import dev.amal.onboarding_data.height_and_weight.source.cache.HeightAndWeightCacheDataSourceImpl
-import dev.amal.onboarding_domain.height_and_weight.interactor.HeightAndWeightInteractor
 import dev.amal.onboarding_domain.height_and_weight.repository.HeightAndWeightRepository
 
 @Module
 @InstallIn(SingletonComponent::class)
-class HeightAndWeightModule {
+object HeightAndWeightModule {
 
     @Provides
     fun provideHeightAndWeightCacheDataSource(
@@ -27,12 +26,5 @@ class HeightAndWeightModule {
         heightAndWeightCacheDataSource: HeightAndWeightCacheDataSource
     ): HeightAndWeightRepository = HeightAndWeightRepositoryImpl(
         heightAndWeightCacheDataSource = heightAndWeightCacheDataSource
-    )
-
-    @Provides
-    fun provideHeightAndWeightInteractor(
-        heightAndWeightCacheDataSource: HeightAndWeightRepository
-    ): HeightAndWeightInteractor = HeightAndWeightInteractor(
-        heightAndWeightRepository = heightAndWeightCacheDataSource
     )
 }

@@ -12,6 +12,7 @@ import dev.amal.onboarding_presentation.activity_and_goal.ActivityAndGoalAssembl
 import dev.amal.onboarding_presentation.age.AgeScreenAssembly
 import dev.amal.onboarding_presentation.gender.GenderScreenAssembly
 import dev.amal.onboarding_presentation.height_and_weight.HeightAndWeightAssembly
+import dev.amal.onboarding_presentation.nutrient_goal.NutrientGoalAssembly
 import dev.amal.onboarding_presentation.welcome.WelcomeScreenAssembly
 
 @Composable
@@ -43,7 +44,7 @@ fun SetupNavHost(
             ActivityAndGoalAssembly(navController = navController)
         }
         composable(Route.NUTRIENT_GOAL) {
-
+            NutrientGoalAssembly(navController = navController, showSnackBar = showSnackBar)
         }
         composable(Route.TRACKER_OVERVIEW) {
 

@@ -1,7 +1,6 @@
 package dev.amal.onboarding_data.height_and_weight.source.cache
 
 import android.content.SharedPreferences
-import dev.amal.core.domain.preferences.Preferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -15,9 +14,14 @@ class HeightAndWeightCacheDataSourceImpl(
     ): Result<Unit> = withContext(Dispatchers.IO) {
         runCatching {
             preferences.edit()
-                .putInt(Preferences.KEY_HEIGHT, height)
-                .putFloat(Preferences.KEY_WEIGHT, weight)
+                .putInt(KEY_HEIGHT, height)
+                .putFloat(KEY_WEIGHT, weight)
                 .apply()
         }
+    }
+
+    private companion object {
+        private const val KEY_WEIGHT = "weight"
+        private const val KEY_HEIGHT = "height"
     }
 }

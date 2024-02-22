@@ -5,7 +5,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.amal.core.R
 import dev.amal.core.util.BaseViewModel
 import dev.amal.core.util.UiText
-import dev.amal.onboarding_domain.age.interactor.AgeInteractor
+import dev.amal.onboarding_domain.age.use_case.SaveAgeUseCase
 import dev.amal.onboarding_presentation.age.AgeViewModel.AgeAction
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AgeViewModel @Inject constructor(
-    private val ageInteractor: AgeInteractor
+    private val saveAge: SaveAgeUseCase
 ) : BaseViewModel<String, AgeAction, AgeEvent>() {
 
     override fun defaultState() = "20"
@@ -37,7 +37,7 @@ class AgeViewModel @Inject constructor(
                 return@launch
             }
 
-            ageInteractor.saveAge(age = age).onSuccess {
+            saveAge(age = age).onSuccess {
                 actionChannel.send(AgeAction.NavigateToTheNextScreen)
             }
         }

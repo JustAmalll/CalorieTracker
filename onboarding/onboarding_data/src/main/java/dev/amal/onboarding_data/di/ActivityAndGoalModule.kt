@@ -8,12 +8,11 @@ import dagger.hilt.components.SingletonComponent
 import dev.amal.onboarding_data.activity_and_goal.repository.ActivityAndGoalRepositoryImpl
 import dev.amal.onboarding_data.activity_and_goal.source.cache.ActivityAndGoalCacheDataSource
 import dev.amal.onboarding_data.activity_and_goal.source.cache.ActivityAndGoalCacheDataSourceImpl
-import dev.amal.onboarding_domain.activity_and_goal.interactor.ActivityAndGoalInteractor
 import dev.amal.onboarding_domain.activity_and_goal.repository.ActivityAndGoalRepository
 
 @Module
 @InstallIn(SingletonComponent::class)
-class ActivityAndGoalModule {
+object ActivityAndGoalModule {
 
     @Provides
     fun provideHeightAndWeightCacheDataSource(
@@ -27,12 +26,5 @@ class ActivityAndGoalModule {
         activityAndGoalCacheDataSource: ActivityAndGoalCacheDataSource
     ): ActivityAndGoalRepository = ActivityAndGoalRepositoryImpl(
         activityAndGoalCacheDataSource = activityAndGoalCacheDataSource
-    )
-
-    @Provides
-    fun provideActivityAndGoalInteractor(
-        activityAndGoalRepository: ActivityAndGoalRepository
-    ): ActivityAndGoalInteractor = ActivityAndGoalInteractor(
-        activityAndGoalRepository = activityAndGoalRepository
     )
 }

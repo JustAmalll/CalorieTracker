@@ -3,7 +3,7 @@ package dev.amal.onboarding_presentation.activity_and_goal
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.amal.core.util.BaseViewModel
-import dev.amal.onboarding_domain.activity_and_goal.interactor.ActivityAndGoalInteractor
+import dev.amal.onboarding_domain.activity_and_goal.use_case.SaveActivityAndGoalUseCase
 import dev.amal.onboarding_presentation.activity_and_goal.ActivityAndGoalEvent.OnActivityLevelClicked
 import dev.amal.onboarding_presentation.activity_and_goal.ActivityAndGoalEvent.OnGoalClicked
 import dev.amal.onboarding_presentation.activity_and_goal.ActivityAndGoalEvent.OnNextClicked
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ActivityAndGoalViewModel @Inject constructor(
-    private val activityAndGoalInteractor: ActivityAndGoalInteractor
+    private val saveActivityAndGoal: SaveActivityAndGoalUseCase
 ) : BaseViewModel<ActivityAndGoalState, ActivityAndGoalAction, ActivityAndGoalEvent>() {
 
     override fun defaultState() = ActivityAndGoalState()
@@ -32,7 +32,7 @@ class ActivityAndGoalViewModel @Inject constructor(
 
     private fun saveActivityAndGoalAndNavigateToTheNextScreen() {
         viewModelScope.launch {
-            activityAndGoalInteractor.saveActivityAndGoal(
+            saveActivityAndGoal(
                 activityLevel = state.value.selectedActivityLevel,
                 goal = state.value.selectedGoal
             ).onSuccess {
