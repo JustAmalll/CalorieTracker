@@ -7,8 +7,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dev.amal.tracker_data.repository.TrackerRepositoryImpl
 import dev.amal.tracker_data.source.cache.TrackerDatabase
 import dev.amal.tracker_data.source.remote.OpenFoodApi
+import dev.amal.tracker_domain.repository.TrackerRepository
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -44,4 +46,9 @@ object TrackerDataModule {
     @Singleton
     fun provideTrackerDatabase(app: Application): TrackerDatabase =
         Room.databaseBuilder(app, TrackerDatabase::class.java, "tracker_db").build()
+
+    @Provides
+    @Singleton
+    fun provideTrackerRepository(api: OpenFoodApi, db: TrackerDatabase): TrackerRepository =
+        TrackerRepositoryImpl(dao = db.dao, api = api)
 }

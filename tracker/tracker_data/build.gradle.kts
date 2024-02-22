@@ -28,6 +28,7 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -41,6 +42,9 @@ dependencies {
     implementation(project(":tracker:tracker_domain"))
 
     implementation(libs.core.ktx)
+
+    // Coroutines
+    implementation(libs.coroutines)
 
     // Hilt
     implementation(libs.hilt)
@@ -61,6 +65,9 @@ dependencies {
     implementation(libs.okhttp.logging.interceptor)
 
     // Room
-    implementation(libs.room)
+    implementation(libs.bundles.room)
     ksp(libs.room.compiler)
+
+    // Desugaring
+    coreLibraryDesugaring(libs.desugar.jdk)
 }

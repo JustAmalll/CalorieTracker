@@ -32,6 +32,7 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -76,4 +77,7 @@ dependencies {
 
     // Coil
     implementation(libs.coil.compose)
+
+    // Desugaring
+    coreLibraryDesugaring(libs.desugar.jdk)
 }

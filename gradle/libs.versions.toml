@@ -30,6 +30,7 @@ coroutines = "1.8.0"
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
 serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization-json" }
 lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+desugar_jdk = { module = "com.android.tools:desugar_jdk_libs", version = "2.0.4" }
 
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
@@ -46,7 +47,8 @@ compose-navigation = { module = "androidx.navigation:navigation-compose", versio
 compose-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 compose-lifecycle = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 
-room = { module = "androidx.room:room-runtime", version.ref = "room" }
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil-compose" }
@@ -68,6 +70,10 @@ compose = [
     "compose-lifecycle",
     "compose-viewModel",
     "compose-material3"
+]
+room = [
+    "room-runtime",
+    "room-ktx"
 ]
 
 [plugins]
