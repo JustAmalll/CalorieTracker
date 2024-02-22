@@ -51,5 +51,7 @@ dependencies {
     implementation(libs.core.ktx)
 
     // Compose
+    implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)
+    implementation(libs.compose.navigation)
 }

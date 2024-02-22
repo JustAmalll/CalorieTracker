@@ -80,12 +80,4 @@ dependencies {
 
     // Coil
     implementation(libs.coil.compose)
-
-    // Retrofit
-    implementation(libs.retrofit)
-
-    // OkHttp
-    implementation(platform(libs.okhttp.bom))
-    implementation(libs.okhttp)
-    implementation(libs.okhttp.logging.interceptor)
 }

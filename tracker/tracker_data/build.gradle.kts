@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
+    alias(libs.plugins.serialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -38,4 +41,22 @@ dependencies {
     implementation(project(":tracker:tracker_domain"))
 
     implementation(libs.core.ktx)
+
+    // Hilt
+    implementation(libs.hilt)
+    ksp(libs.hilt.compiler)
+
+    // Retrofit
+    implementation(libs.retrofit)
+
+    // Serialization
+    implementation(libs.serialization.json)
+
+    // Serialization Converter
+    implementation(libs.serialization.converter)
+
+    // OkHttp
+    implementation(platform(libs.okhttp.bom))
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
 }
